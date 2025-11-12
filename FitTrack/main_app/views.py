@@ -27,6 +27,17 @@ def signup(request):
     context = {"form": form, "error_message": error_message}
     return render(request, "registration/signup.html", context)
 
+@login_required
+def workouts_index(request):
+    workouts = Workout.objects.filter(user=request.user)
+    return render(request, "workouts/index.html", {"workouts": workouts})
+
+@login_required
+def workouts_detail(request, workout_id):
+    workout = Workout.objects.get(id=workout_id)
+    return render(request, "workouts/detail.html", {"workout": workout})
+
+    #create####################################
 class WorkoutCreate(LoginRequiredMixin, CreateView):
     model = Workout
     fields = ["name", "description", "workout_video", "reps", "is_completed"]
@@ -36,12 +47,12 @@ class WorkoutCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-
+#update###########################
 class WorkoutUpdate(LoginRequiredMixin, UpdateView):
     model = Workout
     fields = ["name", "description", "workout_video", "reps", "is_completed"]
 
-
+#delete#####################################
 class WorkoutDelete(LoginRequiredMixin, DeleteView):
     model = Workout
     success_url = "/workouts/"
