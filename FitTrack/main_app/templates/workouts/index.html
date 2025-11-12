@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<h1> Workout list </h1>
+
+{% for workout in workouts %}
+<div class="card">
+  <a href="{% url 'workouts_detail' workout.id %}">
+    <div class="card-content">
+        <span class="card-title">{{ workout.name }}</span>
+        <p>Description: {{ workout.description }} </p>
+        <p>Workout video: {{ workout.video }} </p>
+        <p>Reps: {{ workout.reps }}</p>
+        <p>Is completed: {{workout.is_completed }} </p>
+
+        {% if workout.is_completed %}
+        <p> You finished your exercise</p>
+        {% else %}
+        <p>You have exercises left</p>
+        {% endif %}
+        </div>
+        </a>
+      </div>
+
+        {% endfor %} {% endblock %}

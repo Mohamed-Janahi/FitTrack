@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Workout Detail</h1>
+
+<div class="card">
+  <div class="card-content">
+    <div class="flex-container">
+      <div>
+        <span class="card-title">{{ workout.name }}</span>
+        <p>Description: {{ workout.description }}</p>
+        <p>Video: {{ workout.workout_video }}</p>
+        <p>Is completed: {{workout.is_completed}} </p>
+
+        {% if workout.reps > 0 %}
+        <p>Reps: {{ workout.reps }}</p>
+        {% else %}
+        <p>Reps: Not specified</p>
+        {% endif %}
+
+        <div class="card-action">
+          <a href="{% url 'workouts_update' workout.id %}">Update</a>
+          <a href="{% url 'workouts_delete' workout.id %}">Delete</a>
+        </div>
+      </div>
+
+
+
+{% endblock %}

@@ -21,11 +21,8 @@
           <ul>
 
             {% if user.is_authenticated %}
-            <!-- <li><a href="{% url 'index' %}">View All My Cats</a></li>
-            <li><a href="{% url 'cats_create' %}">Add a Cat</a></li>
-            <li><a href="{% url 'toys_index' %}">View All Toys</a></li>
-            <li><a href="{% url 'toys_create' %}">Add a Toy</a></li> -->
             <li>
+            <li><a href="{% url 'workouts_create' %}">Add Workout</a></li>
               <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Logout</button>
