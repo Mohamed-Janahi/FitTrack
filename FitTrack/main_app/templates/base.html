@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <header>
+    <header class="navbar-fixed">
       <nav>
-        <div>
+        <div class="nav-wrapper">
           <ul>
             <li>
               <a href="{% url 'home' %}"
@@ -23,6 +23,7 @@
             {% if user.is_authenticated %}
             <li>
             <li><a href="{% url 'workouts_create' %}">Add Workout</a></li>
+            <li><a href="{% url 'workouts_index' %}">All workouts</a></li>
               <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Logout</button>

@@ -56,5 +56,6 @@ class WorkoutUpdate(LoginRequiredMixin, UpdateView):
 class WorkoutDelete(LoginRequiredMixin, DeleteView):
     model = Workout
     success_url = "/workouts/"
+    
 
 
