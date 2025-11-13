@@ -24,6 +24,10 @@
             <li>
             <li><a href="{% url 'workouts_create' %}">Add Workout</a></li>
             <li><a href="{% url 'workouts_index' %}">All workouts</a></li>
+            <li><a href="{% url 'recovery_index' %}">All recoveries</a></li>
+            <li><a href="{% url 'recovery_create' %}">Add recoveries</a></li>
+
+
               <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Logout</button>

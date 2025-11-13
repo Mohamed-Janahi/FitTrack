@@ -12,5 +12,12 @@ urlpatterns = [
     path("workouts/create/", views.WorkoutCreate.as_view(), name="workouts_create"),
     path("workouts/<int:pk>/update/", views.WorkoutUpdate.as_view(), name="workouts_update"),
     path("workouts/<int:pk>/delete/", views.WorkoutDelete.as_view(), name="workouts_delete"),
-]
+
+#recovery#######################
+    path("recovery/", views.recoveries_index, name="recovery_index"),
+    path("recovery/<int:recovery_id>/", views.recoveries_detail, name="recovery_detail"),
+    path("recovery/create/", views.RecoveryCreate.as_view(), name="recovery_create"),
+    path("recovery/<int:pk>/update/", views.RecoveryUpdate.as_view(), name="recovery_update"),
+    path("recovery/<int:pk>/delete/", views.RecoveryDelete.as_view(), name="recovery_delete"),
+    ]
 

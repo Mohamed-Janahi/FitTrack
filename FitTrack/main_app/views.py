@@ -56,6 +56,30 @@ class WorkoutUpdate(LoginRequiredMixin, UpdateView):
 class WorkoutDelete(LoginRequiredMixin, DeleteView):
     model = Workout
     success_url = "/workouts/"
-    
+
+class RecoveryCreate(LoginRequiredMixin, CreateView):
+    model = Recovery
+    fields = ["sleep_time", "food"]
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
+class RecoveryUpdate(LoginRequiredMixin, UpdateView):
+    model = Recovery
+    fields = ["sleep_time", "food"]
+
+class RecoveryDelete(LoginRequiredMixin, DeleteView):
+    model = Recovery
+    success_url = "/recovery/"
+
+@login_required
+def recoveries_index(request):
+    recoveries = Recovery.objects.filter(user=request.user)
+    return render(request, "recoveries/recovery_list.html", {"recoveries" : recoveries})
+
+@login_required
+def recoveries_detail(request, recovery_id):
+    recovery = Recovery.objects.get(id=recovery_id)
+    return render(request, "recoveries/recovery_detail.html", {"recovery": recovery})

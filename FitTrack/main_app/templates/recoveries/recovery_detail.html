@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Recovery Details</h1>
+<div class="row">
+  <div class="col s6 col-offset-3">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ recovery.date }}</span>
+        <p>Time: {{ recovery.sleep_time }}</p>
+        <p>Meals: {{ recovery.food }}</p>
+        <p>Score: {{ recovery.score }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'recovery_update' recovery.id %}">Edit</a>
+        <a href="{% url 'recovery_delete' recovery.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

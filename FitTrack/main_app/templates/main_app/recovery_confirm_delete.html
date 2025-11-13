@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Delete recovery</h1>
+  <h4>Are you sure you want to delete {{ object.date }}? </h4>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, DELETE!" class="btn red">
+      <a href="{% url 'recovery_detail' recovery.id %}" class="btn red">Cancel</a>
+  </form>
+{% endblock %}

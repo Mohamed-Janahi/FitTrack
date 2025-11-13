@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Recovery List</h1>
+{% for recovery in recovery_list %}
+  <a href="{% url 'recovery_detail' recovery.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ recovery.date }}</span>
+            <p>Sleep time: {{ recovery.sleep_time }}</p>
+            <p>Meals: {{ recovery.food }}</p>
+            <p>Score: {{ recovery.score }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+{% endblock %}
