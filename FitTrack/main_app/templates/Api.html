@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Api page</h1>
+{% for exercise in exercises.data %}
+<p>Exercise name: {{ exercise.name}}</p>
+<img
+  src="{{ exercise.gifUrl }}"
+  alt="{{ exercise.name }}"
+  class="exercise-gif"
+/>
+
+{% endfor %} {% endblock %}

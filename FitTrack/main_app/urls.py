@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from .views import profile
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -19,5 +20,9 @@ urlpatterns = [
     path("recovery/create/", views.RecoveryCreate.as_view(), name="recovery_create"),
     path("recovery/<int:pk>/update/", views.RecoveryUpdate.as_view(), name="recovery_update"),
     path("recovery/<int:pk>/delete/", views.RecoveryDelete.as_view(), name="recovery_delete"),
+    path('profile/', views.profile, name='users-profile'),
+    path('profile/update/', views.ProfileUpdate.as_view(), name='profile_update'),
+
+    path('exercises/',views.myApi, name='the_api'),
     ]
 

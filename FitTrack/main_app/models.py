@@ -7,11 +7,12 @@ import datetime
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+    image = models.ImageField(default="", upload_to="main_app/static/profile_images/")
     bio = models.TextField()
 
     def __str__(self):
         return self.user.username
+
 
 class Workout(models.Model):
     name = models.CharField(max_length=100)
@@ -43,7 +44,7 @@ class Recovery(models.Model):
         sleeping_calculation = self.sleep_time * 12.5
         meals_calculation = self.food * 20
 
-        return int((sleeping_calculation + meals_calculation)/2)
+        return int((sleeping_calculation + meals_calculation) / 2)
 
     # saving the score in the DB
     def save(self, *args, **kwargs):

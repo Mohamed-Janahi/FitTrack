@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+  <div>
+    <h2>Edit Profile</h2>
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div>
+        <button type="submit">Save Changes</button>
+        <a href="{% url 'users-profile' %}">Back to Profile</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}
