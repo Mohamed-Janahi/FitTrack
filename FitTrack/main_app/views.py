@@ -9,6 +9,11 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
+
 # Create your views here.
 def home(request):
     return render(request, "home.html")
