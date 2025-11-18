@@ -1,23 +1,116 @@
-{% extends 'base.html' %} {% block content %}
-<h1> Workout list </h1>
+{% extends 'base.html' %}
+{% block content %}
 
-{% for workout in workouts %}
-<div class="card">
-  <a href="{% url 'workouts_detail' workout.id %}">
-    <div class="card-content">
-        <span class="card-title">{{ workout.name }}</span>
-        <p>Description: {{ workout.description }} </p>
-        <p>Workout video: {{ workout.video }} </p>
-        <p>Reps: {{ workout.reps }}</p>
-        <p>Is completed: {{workout.is_completed }} </p>
+<style>
+    .list-container {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        {% if workout.is_completed %}
-        <p> You finished your exercise</p>
-        {% else %}
-        <p>You have exercises left</p>
-        {% endif %}
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 2rem;
+        text-align: center;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 1.5rem;
+        border: 1px solid #e5e7eb;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .card a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #4f46e5;
+        display: block;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .card-content p {
+        font-size: 0.9rem;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+    .completed-message {
+        font-weight: 600;
+        color: #10b981;
+        margin-top: 0.75rem;
+    }
+
+    .not-completed-message {
+        font-weight: 600;
+        color: #ef4444;
+        margin-top: 0.75rem;
+    }
+
+    .completed-status {
+        color: #10b981;
+        font-weight: 600;
+    }
+
+    .not-completed-status {
+        color: #ef4444;
+        font-weight: 600;
+    }
+</style>
+
+<div class="list-container">
+    <h1>Workout List</h1>
+
+    {% for workout in workouts %}
+    <div class="card">
+      <a href="{% url 'workouts_detail' workout.id %}">
+        <div class="card-content">
+            <span class="card-title">{{ workout.name }}</span>
+            <p>Description: {{ workout.description }} </p>
+            <p>Workout video: {{ workout.video }} </p>
+            <p>Reps: {{ workout.reps }}</p>
+            <p>Is completed:
+                {% if workout.is_completed %}
+                    <span class="completed-status">True</span>
+                {% else %}
+                    <span class="not-completed-status">False</span>
+                {% endif %}
+            </p>
+
+            {% if workout.is_completed %}
+            <p class="completed-message">You finished your exercise</p>
+            {% else %}
+            <p class="not-completed-message">You have exercises left</p>
+            {% endif %}
         </div>
-        </a>
-      </div>
+      </a>
+    </div>
 
-        {% endfor %} {% endblock %}
+    {% endfor %}
+</div>
+{% endblock %}
