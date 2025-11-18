@@ -1,16 +1,44 @@
 {% extends 'base.html' %}
 {% block title %}Profile Page{% endblock title %}
 {% block content %}
-    <div>
-        <h1>{{user.username}}</h1>
+
+<div class="flex flex-col items-center justify-start py-12 px-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto border border-gray-200 text-center">
+
+        <div class="mb-4">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
+                {{user.username}}
+            </h1>
+            <p class="text-sm font-medium text-gray-500">User Profile</p>
+        </div>
+
+        <div class="mb-6 flex justify-center">
+            {% load static %}
+            <img
+                width="100px"
+                height="100px"
+                src={% static profile.image|cut:'main_app/static/' %}
+                class="rounded-full w-24 h-24 object-cover ring-4 ring-astro-primary-500 shadow-md"
+            />
+        </div>
+
+        <div class="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <h3 class="text-sm font-semibold mb-2 text-gray-700 uppercase tracking-wider">Bio</h3>
+            <p class="text-lg text-gray-600 font-normal italic">
+                {{profile.bio}}
+            </p>
+        </div>
+
+        <a
+            class="inline-block py-2 px-6 rounded-lg text-base font-semibold transition duration-300 ease-in-out
+            bg-astro-primary-600 hover:bg-astro-primary-500 text-white shadow-md hover:shadow-lg"
+            href="{% url 'profile_update' %}"
+        >
+            Edit profile
+        </a>
+
     </div>
-    <div>
-      {% load static %}
-      <img width="100px" height="100px" src={% static profile.image|cut:'main_app/static/' %} />
-    </div>
-    <div>
-      <h2>{{profile.bio}}</h2>
-    </div>
-    <a class="btn" href="{% url 'profile_update' %}">Edit profile</a>
+</div>
 
 {% endblock content %}

@@ -4,49 +4,89 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FitTrack </title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <title>{% block title %}FitTrack{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // RETAIN primary colors for buttons/accents
+              'astro-primary': {
+                600: '#4f46e5',
+                500: '#6366f1',
+              },
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body>
-    <header class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <ul>
+
+  <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
+
+    <header class="navbar-fixed sticky top-0 z-10 bg-white border-b border-gray-200 shadow-md">
+      <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="nav-wrapper flex justify-between items-center h-16">
+
+          <ul class="flex items-center">
             <li>
-              <a href="{% url 'home' %}"
-                >&nbsp;&nbsp;FitTrack</a
-              >
+              <a href="{% url 'home' %}" class="text-xl font-bold tracking-tight text-gray-900 hover:text-astro-primary-500 transition duration-150">
+                FitTrack
+              </a>
             </li>
           </ul>
-          <ul>
 
+          <ul class="flex space-x-4 md:space-x-6 items-center text-sm font-medium">
             {% if user.is_authenticated %}
-            <li>
-            <li><a href="{% url 'workouts_create' %}">Add Workout</a></li>
-            <li><a href="{% url 'workouts_index' %}">All workouts</a></li>
-            <li><a href="{% url 'recovery_index' %}">All recoveries</a></li>
-            <li><a href="{% url 'recovery_create' %}">Add recoveries</a></li>
-            <li><a href="{% url 'users-profile' %}">Profile</a></li>
-            <li><a href="{% url 'the_api' %}">Api</a></li>
 
-              <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-              </form>
-            </li>
-          {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">Signup</a></li>
+              <li><a href="{% url 'workouts_create' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">Add Workout</a></li>
+              <li><a href="{% url 'workouts_index' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">All workouts</a></li>
+              <li><a href="{% url 'recovery_index' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">All recoveries</a></li>
+              <li><a href="{% url 'recovery_create' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">Add recoveries</a></li>
+              <li><a href="{% url 'the_api' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">Api</a></li>
 
-          {% endif %}
+              <li>
+                <a href="{% url 'users-profile' %}" class="text-gray-800 hover:text-astro-primary-500 transition duration-150">
+                  Profile
+                </a>
+              </li>
+
+              <li>
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="py-1 px-3 rounded-md text-xs font-semibold
+                                                bg-astro-primary-600 hover:bg-astro-primary-500 text-white transition duration-150">
+                    Logout
+                  </button>
+                </form>
+              </li>
+
+            {% else %}
+              <li><a href="{% url 'login' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150">Login</a></li>
+              <li>
+                <a href="{% url 'signup' %}" class="py-1.5 px-3 rounded-md text-sm font-semibold
+                                                  bg-astro-primary-600 hover:bg-astro-primary-500 text-white transition duration-150">
+                  Signup
+                </a>
+              </li>
+            {% endif %}
+          </ul>
         </div>
       </nav>
     </header>
 
-    <main>{% block content %} {% endblock %}</main>
+    <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
+      {% block content %}{% endblock %}
+    </main>
 
-    <footer>
-      <div>
+    <footer class="mt-auto py-4 bg-white text-center border-t border-gray-200">
+      <div class="text-gray-500 text-sm">
         All Rights Reserved, &copy; 2025 FitTrack &nbsp;
       </div>
     </footer>
