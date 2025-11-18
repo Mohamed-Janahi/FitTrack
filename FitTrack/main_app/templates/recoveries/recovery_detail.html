@@ -20,7 +20,7 @@
 
     .col-container {
         width: 100%;
-        max-width: 500px; 
+        max-width: 500px;
     }
 
     .card {
@@ -95,9 +95,9 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">{{ recovery.date }}</span>
-                <p>Time: **{{ recovery.sleep_time }}**</p>
-                <p>Meals: **{{ recovery.food }}**</p>
-                <p>Score: **{{ recovery.score }}**</p>
+                <p>Time: {{ recovery.sleep_time }} hours</p>
+                <p>Meals: {{ recovery.food }}</p>
+                <p>Score: {{ recovery.score }}%</p>
             </div>
             <div class="card-action">
                 <a href="{% url 'recovery_update' recovery.id %}">Edit</a>
