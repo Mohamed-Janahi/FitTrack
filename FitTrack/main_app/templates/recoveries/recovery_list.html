@@ -1,16 +1,95 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<style>
+    /* 1. Main Container and Heading */
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #1f2937;
+        margin-bottom: 2rem;
+        padding-top: 1rem;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    /* Container for all cards to manage overall spacing/width */
+    .card-list-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* 2. Anchor Tag (Makes the whole card clickable) */
+    .card-list-container > a {
+        text-decoration: none; /* Remove underline from link */
+        color: inherit; /* Inherit text color */
+        display: block; /* Make the anchor fill the width of the container */
+        margin-bottom: 1.5rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* 3. Card Styling */
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Hover effect for the clickable card */
+    .card-list-container > a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 4. Card Content */
+    .card-content {
+        padding: 1.25rem;
+    }
+
+    /* Card Title (Date) */
+    .card-title {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #4f46e5; /* Primary color */
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    /* Paragraphs (Details) */
+    .card-content p {
+        font-size: 1rem;
+        color: #374151;
+        margin: 0.4rem 0;
+        line-height: 1.4;
+    }
+
+    /* Highlight the score */
+    .card-content p:last-child {
+        font-weight: 600;
+        color: #10b981; /* Green color for score */
+        margin-top: 1rem;
+    }
+</style>
+
 <h1>Recovery List</h1>
-{% for recovery in recoveries %}
-  <a href="{% url 'recovery_detail' recovery.id %}">
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ recovery.date }}</span>
-            <p>Sleep time: {{ recovery.sleep_time }}</p>
-            <p>Meals: {{ recovery.food }}</p>
-            <p>Score: {{ recovery.score }}</p>
+
+<div class="card-list-container">
+    {% for recovery in recoveries %}
+    <a href="{% url 'recovery_detail' recovery.id %}">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ recovery.date }}</span>
+                <p>Sleep time: {{ recovery.sleep_time }}</p>
+                <p>Meals: {{ recovery.food }}</p>
+                <p>Score: {{ recovery.score }}</p>
+            </div>
         </div>
-    </div>
-  </a>
-{% endfor %}
+    </a>
+    {% endfor %}
+</div>
+
 {% endblock %}
