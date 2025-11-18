@@ -21,15 +21,23 @@
 * PgAdmin
 ***
 
-
 ### ***WireFrame***
 
 ##### Sign In
-![image](./img/Screenshot%202025-11-11%20100457.png)
+![image](./Readme/Sign-in.png)
 
 
 ##### Sign Up
-![image](./img/Screenshot%202025-11-11%20100522.png)
+![image](./Readme/Sign-up.png)
+
+##### Home Page
+![image](./Readme/Home.png)
+
+##### Workouts
+![image](./Readme/Workouts.png)
+
+##### Recovery
+![image](./Readme/Recovery.png)
 
 
 
