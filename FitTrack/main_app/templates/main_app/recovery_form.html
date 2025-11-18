@@ -11,7 +11,7 @@
         padding-bottom: 2rem;
     }
 
-    h1 {
+    .form-container h1 {
         font-size: 2.5rem;
         font-weight: 700;
         color: #1f2937;
@@ -19,7 +19,7 @@
         text-align: center;
     }
 
-    form {
+    .form-container form {
         background-color: #ffffff;
         padding: 2.5rem;
         border-radius: 0.75rem;
@@ -29,19 +29,19 @@
         border: 1px solid #e5e7eb;
     }
 
-    table {
+    .form-container table {
         width: 100%;
         border-collapse: collapse;
     }
 
-    table tr {
+    .form-container table tr {
         border-bottom: 1px solid #f3f4f6;
     }
-    table tr:last-child {
+    .form-container table tr:last-child {
         border-bottom: none;
     }
 
-    table th {
+    .form-container table th {
         text-align: left;
         padding: 0.75rem 0.5rem 0.75rem 0;
         font-size: 0.875rem;
@@ -51,17 +51,17 @@
         vertical-align: middle;
     }
 
-    table td {
+    .form-container table td {
         padding: 0.75rem 0 0.75rem 0.5rem;
         vertical-align: middle;
         display: flex;
         align-items: center;
     }
 
-    table input[type="text"],
-    table input[type="number"],
-    table select,
-    table textarea {
+    .form-container table input[type="text"],
+    .form-container table input[type="number"],
+    .form-container table select,
+    .form-container table textarea {
         flex-grow: 1;
         width: auto;
         padding: 0.5rem 0.75rem;
@@ -71,15 +71,15 @@
         background-color: #f9fafb;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
-    table input:focus,
-    table select:focus,
-    table textarea:focus {
+    .form-container table input:focus,
+    .form-container table select:focus,
+    .form-container table textarea:focus {
         outline: none;
         border-color: #4f46e5;
         box-shadow: 0 0 0 1px #4f46e5;
     }
 
-    table .errorlist {
+    .form-container table .errorlist {
         list-style: none;
         padding: 0;
         margin-top: 0.25rem;
@@ -87,10 +87,10 @@
         color: #ef4444;
     }
 
-    .sleep-time-unit {
+    .form-container .sleep-time-unit {
         position: relative;
     }
-    .sleep-time-unit::after {
+    .form-container .sleep-time-unit::after {
         content: " hours";
         margin-left: 0.5rem;
         color: #4b5563;
