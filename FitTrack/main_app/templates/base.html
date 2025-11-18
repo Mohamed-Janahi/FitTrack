@@ -7,8 +7,6 @@
 
     <title>{% block title %}FitTrack{% endblock title %}</title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -25,7 +23,18 @@
         }
       }
     </script>
-  </head>
+
+    <style>
+      .dropdown-menu {
+        display: none;
+        padding-top: 0.75rem;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    </style>
+
+    </head>
 
   <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
 
@@ -44,11 +53,26 @@
           <ul class="flex space-x-4 md:space-x-6 items-center text-sm font-medium">
             {% if user.is_authenticated %}
 
-              <li><a href="{% url 'workouts_create' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">Add Workout</a></li>
-              <li><a href="{% url 'workouts_index' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">All workouts</a></li>
-              <li><a href="{% url 'recovery_index' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">All recoveries</a></li>
-              <li><a href="{% url 'recovery_create' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">Add recoveries</a></li>
-              <li><a href="{% url 'the_api' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 hidden sm:inline">Explore</a></li>
+              <li class="dropdown relative hidden sm:inline bg-white">
+                <a href="#" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 flex items-center">
+                  Workouts <span class="ml-1 text-xs">▼</span>
+                </a>
+                <div class="dropdown-menu absolute right-[-0.5rem] top-full w-48 bg-white rounded-md shadow-lg z-20 border border-gray-100">
+                  <a href="{% url 'workouts_create' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-astro-primary-500">Add Workout</a>
+                  <a href="{% url 'workouts_index' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-astro-primary-500">All Workouts</a>
+                  <a href="{% url 'the_api' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-astro-primary-500">Explore Workouts</a>
+                </div>
+              </li>
+
+              <li class="dropdown relative hidden sm:inline bg-white">
+                <a href="#" class="text-gray-600 hover:text-astro-primary-500 transition duration-150 flex items-center">
+                  Recovery <span class="ml-1 text-xs">▼</span>
+                </a>
+                <div class="dropdown-menu absolute right-[-0.5rem] top-full w-48 bg-white rounded-md shadow-lg z-20 border border-gray-100">
+                  <a href="{% url 'recovery_index' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-astro-primary-500">List Recoveries</a>
+                  <a href="{% url 'recovery_create' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-astro-primary-500">Add Recovery</a>
+                </div>
+              </li>
 
               <li>
                 <a href="{% url 'users-profile' %}" class="text-gray-800 hover:text-astro-primary-500 transition duration-150">
@@ -59,8 +83,7 @@
               <li>
                 <form action="{% url 'logout' %}" method="post">
                   {% csrf_token %}
-                  <button type="submit" class="py-1 px-3 rounded-md text-xs font-semibold
-                                                bg-astro-primary-600 hover:bg-astro-primary-500 text-white transition duration-150">
+                  <button type="submit" class="py-1 px-3 rounded-md text-xs font-semibold bg-astro-primary-600 hover:bg-astro-primary-500 text-white transition duration-150">
                     Logout
                   </button>
                 </form>
@@ -69,8 +92,7 @@
             {% else %}
               <li><a href="{% url 'login' %}" class="text-gray-600 hover:text-astro-primary-500 transition duration-150">Login</a></li>
               <li>
-                <a href="{% url 'signup' %}" class="py-1.5 px-3 rounded-md text-sm font-semibold
-                                                  bg-astro-primary-600 hover:bg-astro-primary-500 text-white transition duration-150">
+                <a href="{% url 'signup' %}" class="py-1.5 px-3 rounded-md text-sm font-semibold bg-astro-primary-600 hover:bg-astro-primary-500 text-white transition duration-150">
                   Signup
                 </a>
               </li>
